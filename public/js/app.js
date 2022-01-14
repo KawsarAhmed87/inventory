@@ -2060,8 +2060,6 @@ module.exports = {
 //
 //
 //
-//
-//
 
 /***/ }),
 
@@ -37948,11 +37946,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control",
-          attrs: {
-            type: "text",
-            id: "exampleInputFirstName",
-            placeholder: "Enter Full Name",
-          },
+          attrs: { type: "text", name: "name", placeholder: "Enter Full Name" },
         }),
       ]),
       _vm._v(" "),
@@ -37963,8 +37957,7 @@ var staticRenderFns = [
           staticClass: "form-control",
           attrs: {
             type: "email",
-            id: "exampleInputEmail",
-            "aria-describedby": "emailHelp",
+            name: "email",
             placeholder: "Enter Email Address",
           },
         }),
@@ -37977,7 +37970,7 @@ var staticRenderFns = [
           staticClass: "form-control",
           attrs: {
             type: "password",
-            id: "exampleInputPassword",
+            name: "password",
             placeholder: "Password",
           },
         }),
@@ -37990,7 +37983,7 @@ var staticRenderFns = [
           staticClass: "form-control",
           attrs: {
             type: "password",
-            id: "exampleInputPasswordRepeat",
+            name: "password_confirmation",
             placeholder: "Confirl Password",
           },
         }),
@@ -53734,8 +53727,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Software\XAMPP new\htdocs\inventory\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\Software\XAMPP new\htdocs\inventory\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\xampp\htdocs\inventory\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\xampp\htdocs\inventory\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

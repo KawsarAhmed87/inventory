@@ -13,21 +13,19 @@
                   <form>
                     <div class="form-group">
                       <label>Name</label>
-                      <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Full Name">
+                      <input type="text" class="form-control" name="name" placeholder="Enter Full Name">
                     </div>
                     <div class="form-group">
                       <label>Email</label>
-                      <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
-                        placeholder="Enter Email Address">
+                      <input type="email" class="form-control" name="email"  placeholder="Enter Email Address">
                     </div>
                     <div class="form-group">
                       <label>Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password">
+                      <input type="password" class="form-control" name="password" placeholder="Password">
                     </div>
                     <div class="form-group">
                       <label>Confirm Password</label>
-                      <input type="password" class="form-control" id="exampleInputPasswordRepeat"
-                        placeholder="Confirl Password">
+                      <input type="password" class="form-control" name="password_confirmation" placeholder="Confirl Password">
                     </div>
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-block">Register</button>
