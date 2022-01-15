@@ -11,7 +11,7 @@ class User{
  }
 
  hasToken(){
-     const storeToken = localStorage.getItem(token);
+     const storeToken = localStorage.getItem('token');
      if (storeToken) {
         return Token.isValid(storeToken) ? true : false
      }
@@ -32,7 +32,7 @@ class User{
             const payload = Token.payload(localStorage.getItem('user'))
             return payload.sub
         }
-        false
+        return false
     }
 
 }

@@ -10,22 +10,25 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Register</h1>
                   </div>
-                  <form>
+                  <form class="user" @submit.prevent="signup"> 
                     <div class="form-group">
                       <label>Name</label>
-                      <input type="text" class="form-control" name="name" placeholder="Enter Full Name">
+                      <input type="text" class="form-control" v-model="form.name" placeholder="Enter Full Name">
+                      <small class="text-danger"   v-if="errors.name">{{errors.name[0]}}</small>
                     </div>
                     <div class="form-group">
                       <label>Email</label>
-                      <input type="email" class="form-control" name="email"  placeholder="Enter Email Address">
+                      <input type="email" class="form-control" v-model="form.email"  placeholder="Enter Email Address">
+                      <small class="text-danger"   v-if="errors.email">{{errors.email[0]}}</small>
                     </div>
                     <div class="form-group">
                       <label>Password</label>
-                      <input type="password" class="form-control" name="password" placeholder="Password">
+                      <input type="password" class="form-control" v-model="form.password" placeholder="Password">
+                      <small class="text-danger"   v-if="errors.password">{{errors.password[0]}}</small>
                     </div>
                     <div class="form-group">
                       <label>Confirm Password</label>
-                      <input type="password" class="form-control" name="password_confirmation" placeholder="Confirl Password">
+                      <input type="password" class="form-control" v-model="form.password_confirmation" placeholder="Confirl Password">
                     </div>
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-block">Register</button>
@@ -46,7 +49,48 @@
     </div>
     </div>
 </template>
-<script>
+<script type="text/javascripts">
+export default{
+
+  created(){
+    if (User.loggedIn()) {
+      this.$router.push({name: 'home'})
+    }
+  },
+
+data(){
+return {
+  form:{
+    name: null,
+    email: null,
+    password: null,
+    password_confirmation: null
+  },
+  errors:{}
+}
+},
+methods: {
+  signup(){
+    axios.post('/api/auth/signup',this.form)
+    .then(res => {
+      User.responseAfterLogin(res)
+      /*------ start Toast------- */ 
+      Toast.fire({
+        icon: 'success',
+        title: 'Registration successfully'
+      })
+      /*------ end Toast------- */
+
+      this.$router.push({name: 'home'})
+    })
+    .catch(error =>this.errors = error.response.data.errors)
+   
+  }
+}
+
+
+
+}
 
 </script>
 
