@@ -6,6 +6,12 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
+
+// noty ------------
+window.Noty = require('noty');
+
+// end noty--------
+
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
@@ -39,3 +45,5 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+
