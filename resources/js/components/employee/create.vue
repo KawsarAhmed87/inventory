@@ -82,7 +82,7 @@ export default{
             joinint_date: null,
             phone: null,
             photo: null,
-            nid: null,
+            nid: null
         },
         errors:{}
         }
