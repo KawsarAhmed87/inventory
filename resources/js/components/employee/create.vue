@@ -91,15 +91,10 @@ export default{
           onFileSelected(event){
 
             let file = event.target.files[0];
-          if (file.size > 1373) {
+          if (file.size > 1) {
               Notification.image_validation()
             }else{
-              let reader = new FileReader();
-      reader.onload = event =>{
-        this.form.photo = event.target.result
-        console.log(event.target.result);
-      };
-      reader.readAsDataURL(file);
+              console.log(event);
             }
             
           },

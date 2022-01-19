@@ -2294,21 +2294,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     onFileSelected: function onFileSelected(event) {
-      var _this = this;
-
       var file = event.target.files[0];
 
-      if (file.size > 1373) {
+      if (file.size > 1) {
         Notification.image_validation();
       } else {
-        var reader = new FileReader();
-
-        reader.onload = function (event) {
-          _this.form.photo = event.target.result;
-          console.log(event.target.result);
-        };
-
-        reader.readAsDataURL(file);
+        console.log(event);
       }
     },
     employeeInsert: function employeeInsert() {}
@@ -62889,8 +62880,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\xampp\htdocs\inventory\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\xampp\htdocs\inventory\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\Software\XAMPP new\htdocs\inventory\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\Software\XAMPP new\htdocs\inventory\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
