@@ -47,24 +47,12 @@
         <div id="employee" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <router-link class="collapse-item" to="/store-employee">Add employee</router-link>
-            <router-link class="collapse-item" to="">All employee</router-link>
+            <router-link class="collapse-item" to="/employee">All employee</router-link>
           </div>
         </div>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#suppliers"
-          aria-expanded="true" aria-controls="collapseBootstrap">
-          <i class="far fa-fw fa-window-maximize"></i>
-          <span>Suppliers</span>
-        </a>
-        <div id="suppliers" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <router-link class="collapse-item" to="">Add suppliers</router-link>
-            <router-link class="collapse-item" to="">All suppliers</router-link>
-          </div>
-        </div>
-      </li>
+     
 
 
 

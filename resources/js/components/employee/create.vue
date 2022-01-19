@@ -8,7 +8,7 @@
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Add employee <button class="btn btn-default btn-sm"><router-link to="/">List</router-link></router-link></button></h1>
+                    <h1 class="h4 text-gray-900 mb-4">Add employee <button class="btn btn-default btn-sm"><router-link to="/employee">List</router-link></button></h1>
                   </div>
                   <form class="user" @submit.prevent="employeeInsert" enctype="multipart/form-data"> 
                     <div class="form-group">
@@ -40,8 +40,8 @@
                       <small class="text-danger"   v-if="errors.phone">{{errors.phone[0]}}</small>
                     </div>
                     <div class="form-group">
-                      <input type="file" class="form-control" placeholder="Photo">
-                      <img src="form.photo" style="height:75px; width: 75px">
+                      <input type="file" class="form-control" placeholder="Photo" @change="onFileSelected">
+                      <img :src="form.photo" style="height:75px; width: 75px">
                       <small class="text-danger"   v-if="errors.photo">{{errors.photo[0]}}</small>
                     </div>
                     <div class="form-group">
@@ -88,6 +88,21 @@ export default{
         }
         },
         methods: {
+          onFileSelected(event){
+
+            let file = event.target.files[0];
+          if (file.size > 1373) {
+              Notification.image_validation()
+            }else{
+              let reader = new FileReader();
+      reader.onload = event =>{
+        this.form.photo = event.target.result
+        console.log(event.target.result);
+      };
+      reader.readAsDataURL(file);
+            }
+            
+          },
             employeeInsert(){
                 
             }
