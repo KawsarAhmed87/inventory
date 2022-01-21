@@ -62880,8 +62880,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Software\XAMPP new\htdocs\inventory\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\Software\XAMPP new\htdocs\inventory\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\xampp\htdocs\inventory\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\xampp\htdocs\inventory\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
