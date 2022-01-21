@@ -24,12 +24,12 @@
                       <small class="text-danger"   v-if="errors.address">{{errors.address[0]}}</small>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" v-model="form.salary" placeholder="Salary">
-                      <small class="text-danger"   v-if="errors.salary">{{errors.salary[0]}}</small>
+                      <input type="text" class="form-control" v-model="form.sallery" placeholder="Salary">
+                      <small class="text-danger"   v-if="errors.sallery">{{errors.sallery[0]}}</small>
                     </div>
                     <div class="form-group">
-                      <input type="date" class="form-control" v-model="form.joinint_date" placeholder="Joining date">
-                      <small class="text-danger"   v-if="errors.joinint_date">{{errors.joinint_date[0]}}</small>
+                      <input type="date" class="form-control" v-model="form.joining_date" placeholder="Joining date">
+                      <small class="text-danger"   v-if="errors.joining_date">{{errors.joining_date[0]}}</small>
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" v-model="form.nid" placeholder="NID">
@@ -91,15 +91,32 @@ export default{
           onFileSelected(event){
 
             let file = event.target.files[0];
-          if (file.size > 1) {
-              Notification.image_validation()
+          if (file.size > 1048770) {
+              Toast.fire({
+                icon: 'error',
+                title: 'File size is too big!!!'
+              })
             }else{
-              console.log(event);
+              let reader = new FileReader();
+              reader.onload = event =>{
+                this.form.photo =  event.target.result
+                console.log(event.target.result)
+              };
+              reader.readAsDataURL(file); 
             }
             
           },
             employeeInsert(){
-                
+              axios.post('/api/employee',this.form)
+              .then(() => {
+                this.$router.push({ name: 'employee'})
+                Toast.fire({
+                icon: 'success',
+                title: 'Inserted successfull'
+              })
+              })
+              .catch(error =>this.errors = error.response.data.errors)
+
             }
         }
 

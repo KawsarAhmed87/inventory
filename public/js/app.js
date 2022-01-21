@@ -2294,15 +2294,42 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     onFileSelected: function onFileSelected(event) {
+      var _this = this;
+
       var file = event.target.files[0];
 
-      if (file.size > 1) {
-        Notification.image_validation();
+      if (file.size > 1048770) {
+        Toast.fire({
+          icon: 'error',
+          title: 'File size is too big!!!'
+        });
       } else {
-        console.log(event);
+        var reader = new FileReader();
+
+        reader.onload = function (event) {
+          _this.form.photo = event.target.result;
+          console.log(event.target.result);
+        };
+
+        reader.readAsDataURL(file);
       }
     },
-    employeeInsert: function employeeInsert() {}
+    employeeInsert: function employeeInsert() {
+      var _this2 = this;
+
+      axios.post('/api/employee', this.form).then(function () {
+        _this2.$router.push({
+          name: 'employee'
+        });
+
+        Toast.fire({
+          icon: 'success',
+          title: 'Inserted successfull'
+        });
+      })["catch"](function (error) {
+        return _this2.errors = error.response.data.errors;
+      });
+    }
   }
 });
 
@@ -45428,26 +45455,26 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.salary,
-                              expression: "form.salary",
+                              value: _vm.form.sallery,
+                              expression: "form.sallery",
                             },
                           ],
                           staticClass: "form-control",
                           attrs: { type: "text", placeholder: "Salary" },
-                          domProps: { value: _vm.form.salary },
+                          domProps: { value: _vm.form.sallery },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(_vm.form, "salary", $event.target.value)
+                              _vm.$set(_vm.form, "sallery", $event.target.value)
                             },
                           },
                         }),
                         _vm._v(" "),
-                        _vm.errors.salary
+                        _vm.errors.sallery
                           ? _c("small", { staticClass: "text-danger" }, [
-                              _vm._v(_vm._s(_vm.errors.salary[0])),
+                              _vm._v(_vm._s(_vm.errors.sallery[0])),
                             ])
                           : _vm._e(),
                       ]),
@@ -45458,13 +45485,13 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.joinint_date,
-                              expression: "form.joinint_date",
+                              value: _vm.form.joining_date,
+                              expression: "form.joining_date",
                             },
                           ],
                           staticClass: "form-control",
                           attrs: { type: "date", placeholder: "Joining date" },
-                          domProps: { value: _vm.form.joinint_date },
+                          domProps: { value: _vm.form.joining_date },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
@@ -45472,16 +45499,16 @@ var render = function () {
                               }
                               _vm.$set(
                                 _vm.form,
-                                "joinint_date",
+                                "joining_date",
                                 $event.target.value
                               )
                             },
                           },
                         }),
                         _vm._v(" "),
-                        _vm.errors.joinint_date
+                        _vm.errors.joining_date
                           ? _c("small", { staticClass: "text-danger" }, [
-                              _vm._v(_vm._s(_vm.errors.joinint_date[0])),
+                              _vm._v(_vm._s(_vm.errors.joining_date[0])),
                             ])
                           : _vm._e(),
                       ]),
