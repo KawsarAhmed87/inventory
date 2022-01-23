@@ -243,7 +243,10 @@
        axios.patch('/api/product/'+id,this.form)
        .then(() => {
         this.$router.push({ name: 'product'})
-        Notification.success()
+        Toast.fire({
+                    icon: 'success',
+                    title: 'updated successfull'
+                })
        })
        .catch(error =>this.errors = error.response.data.errors)
      },
