@@ -20,3 +20,9 @@ Route::apiResource('/supplier', 'Api\SupplierController');
 Route::apiResource('/category', 'Api\CategoryController');
 Route::apiResource('/product', 'Api\ProductController');
 Route::apiResource('/expense', 'Api\ExpenseController');
+
+Route::post('/salary/paid/{id}', 'Api\SalaryController@paid');
+Route::Get('/salary', 'Api\SalaryController@AllSalary');
+Route::Get('/salary/view/{id}', 'Api\SalaryController@ViewSalary');
+Route::Get('/edit/salary/{id}', 'Api\SalaryController@EditSalary');
+Route::Post('/salary/update/{id}', 'Api\SalaryController@SalaryUpdate');
