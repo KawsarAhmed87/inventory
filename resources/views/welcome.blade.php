@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="{{asset('')}}backend/img/logo/logo.png" rel="icon">
-  <title>RuangAdmin - Dashboard</title>
+  <title>Inventory - Dashboard</title>
   <link href="{{asset('')}}css/app.css">
   <link href="{{asset('')}}backend/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="{{asset('')}}backend/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -26,7 +26,7 @@
         <div class="sidebar-brand-icon">
           <img src="{{asset('')}}backend/img/logo/logo2.png">
         </div>
-        <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+        <div class="sidebar-brand-text mx-3">Inventory</div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
@@ -34,6 +34,13 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></router-link>
       </li>
+
+      <li class="nav-item bg-info">
+        <router-link class="nav-link" to="/home">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>POS</span></router-link>
+      </li>
+
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Features
@@ -124,7 +131,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#customer"
-          aria-expanded="true" aria-controls="collapseBootstrap">
+          aria-expanded="true" aria-controls="customer">
           <i class="far fa-fw fa-window-maximize"></i>
           <span>Customer</span>
         </a>
