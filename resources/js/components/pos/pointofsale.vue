@@ -53,19 +53,19 @@
 
         <form @submit.prevent="orderdone">
           <label>Customer Name</label>
-          <select class="form-control" v-model="customer_id">
+          <select class="form-control" >
          <option></option>
                  
            </select>
 
            <label>Pay</label>
-           <input type="text" class="form-control" required="" v-model="pay">
+           <input type="text" class="form-control" required="" >
 
            <label>Due</label>
-           <input type="text" class="form-control" required="" v-model="due">
+           <input type="text" class="form-control" required="" >
 
           <label>Pay By</label>
-          <select class="form-control" v-model="payby">
+          <select class="form-control" >
                  <option value="HandCash">Hand Cash </option>
                  <option value="Cheaque">Cheaque </option>
                  <option value="GiftCard">Gift Card </option>
@@ -106,7 +106,7 @@
   
 
   <li class="nav-item" v-for="category in categories" :key="category.id">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" </a>
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" @click="subproduct(category.id)">{{ category.category_name }} </a>
   </li>
 
 
@@ -125,6 +125,8 @@
               <img :src="product.image" id="em_photo" class="card-img-top">
               <div class="card-body">
                 <h6 class="card-title">{{ product.product_name }}</h6>
+                <span class="badge badge-success" v-if="product.product_quantity  >= 1 ">Available {{ product.product_quantity }}  </span> 
+    <span class="badge badge-danger" v-else=" ">Stock Out </span>
                 
               </div>
             </div></button> 
@@ -148,7 +150,16 @@
 
      <div class="row">
       <div class="col-lg-3 col-md-3 col-sm-6 col-6" v-for="getproduct in getfiltersearch" :key="getproduct.id">
-         
+         <button class="btn btn-sm">
+             <div class="card" style="width: 8.5rem; margin-bottom: 5px;">
+              <img :src="getproduct.image" id="em_photo" class="card-img-top">
+              <div class="card-body">
+                <h6 class="card-title">{{ getproduct.product_name }}</h6>
+       <span class="badge badge-success" v-if="getproduct.product_quantity  >= 1 ">Available {{ getproduct.product_quantity }}  </span> 
+    <span class="badge badge-danger" v-else=" ">Stock Out </span> 
+                
+              </div>
+            </div></button>
           
         </div>        
       </div>
@@ -191,12 +202,17 @@ export default{
         },
         created(){
                 this.allProduct();
+                this.allCategory();
+                
 
         },
 
         data(){
         return {
         products:[],
+        categories: '',
+        getproducts:[],
+        getsearchTerm:'',
         searchTerm:''
         }
         },
@@ -205,7 +221,12 @@ export default{
         return this.products.filter(product => {
             return product.product_name.match(this.searchTerm)
         }) 
-        }
+        },
+        getfiltersearch(){
+      return this.getproducts.filter(getproduct => {
+         return getproduct.product_name.match(this.getsearchTerm)
+       }) 
+      },
         },
         methods: {
           allProduct(){
@@ -213,6 +234,16 @@ export default{
             .then(({data}) => (this.products = data))
             .catch()
             }, 
+          allCategory(){
+            axios.get('/api/category/')
+            .then(({data}) => (this.categories = data))
+            .catch()
+          },
+          subproduct(id){
+              axios.get('/api/getting/product/'+id)
+              .then(({data}) => (this.getproducts = data))
+              .catch()
+            }
              
         }
         
@@ -225,7 +256,7 @@ export default{
 
 <style scoped>
 #em_photo{
-    height: 40px;
-    width: 40px;
+    height: 100px;
+    width: 130px;
   }
 </style>

@@ -27,3 +27,5 @@ Route::Get('/salary', 'Api\SalaryController@AllSalary');
 Route::Get('/salary/view/{id}', 'Api\SalaryController@ViewSalary');
 Route::Get('/edit/salary/{id}', 'Api\SalaryController@EditSalary');
 Route::Post('/salary/update/{id}', 'Api\SalaryController@SalaryUpdate');
+
+Route::Get('/getting/product/{id}', 'Api\PosController@GetProduct');
