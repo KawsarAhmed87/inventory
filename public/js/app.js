@@ -4228,6 +4228,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getproducts: [],
     getsearchTerm: '',
     customers: '',
+    vat: 15,
     carts: [],
     searchTerm: ''
   };
@@ -53109,9 +53110,35 @@ var render = function () {
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._m(3),
+                  _c(
+                    "li",
+                    {
+                      staticClass:
+                        "list-group-item d-flex justify-content-between align-items-center",
+                    },
+                    [
+                      _vm._v("Vat:\n                "),
+                      _c("strong", [_vm._v(_vm._s(_vm.vat) + " %")]),
+                    ]
+                  ),
                   _vm._v(" "),
-                  _vm._m(4),
+                  _c(
+                    "li",
+                    {
+                      staticClass:
+                        "list-group-item d-flex justify-content-between align-items-center",
+                    },
+                    [
+                      _vm._v("Total :\n                "),
+                      _c("strong", [
+                        _vm._v(
+                          _vm._s(
+                            (_vm.subtotal * _vm.vat) / 100 + _vm.subtotal
+                          ) + " $"
+                        ),
+                      ]),
+                    ]
+                  ),
                 ]),
                 _vm._v(" "),
                 _c("br"),
@@ -53183,7 +53210,7 @@ var render = function () {
                     _vm._v(" "),
                     _c("label", [_vm._v("Pay By")]),
                     _vm._v(" "),
-                    _vm._m(5),
+                    _vm._m(3),
                     _vm._v(" "),
                     _c("br"),
                     _vm._v(" "),
@@ -53203,7 +53230,7 @@ var render = function () {
           _vm._v(" "),
           _c("div", { staticClass: "col-xl-7 col-lg-7" }, [
             _c("div", { staticClass: "card mb-4" }, [
-              _vm._m(6),
+              _vm._m(4),
               _vm._v(" "),
               _c(
                 "ul",
@@ -53212,7 +53239,7 @@ var render = function () {
                   attrs: { id: "myTab", role: "tablist" },
                 },
                 [
-                  _vm._m(7),
+                  _vm._m(5),
                   _vm._v(" "),
                   _vm._l(_vm.categories, function (category) {
                     return _c(
@@ -53577,32 +53604,6 @@ var staticRenderFns = [
           "list-group-item d-flex justify-content-between align-items-center",
       },
       [_vm._v("Total Quantity:\n                "), _c("strong")]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      {
-        staticClass:
-          "list-group-item d-flex justify-content-between align-items-center",
-      },
-      [_vm._v("Vat:\n                "), _c("strong", [_vm._v(" %")])]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      {
-        staticClass:
-          "list-group-item d-flex justify-content-between align-items-center",
-      },
-      [_vm._v("Total :\n                "), _c("strong", [_vm._v(" $")])]
     )
   },
   function () {

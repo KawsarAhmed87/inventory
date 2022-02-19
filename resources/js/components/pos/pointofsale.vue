@@ -65,10 +65,10 @@
                 </li>
 
                   <li class="list-group-item d-flex justify-content-between align-items-center">Vat:
-                <strong> %</strong>
+                <strong>{{vat}} %</strong>
                 </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center">Total :
-                <strong> $</strong>
+                <strong>{{subtotal*vat/100 + subtotal}} $</strong>
                 </li> 
               
             </ul>   
@@ -242,6 +242,7 @@ export default{
         getproducts:[],
         getsearchTerm:'',
         customers:'',
+        vat: 15,
         carts:[],
         searchTerm:''
         }
