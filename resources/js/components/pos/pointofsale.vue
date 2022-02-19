@@ -37,7 +37,18 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <tr v-for="cart in carts" :key="cart.id">
+            <td>{{ cart.pro_name }}</td>
+            <td><input type="text" readonly="" style="width: 15px;" :value="cart.pro_quantity">
+       <button @click.prevent="increment(cart.id)" class="btn btn-sm btn-success">+</button>
+   <button  @click.prevent="decrement(cart.id)" class="btn btn-sm btn-danger" v-if="cart.pro_quantity >= 2">-</button>
+   <button class="btn btn-sm btn-danger" v-else="" disabled="">-</button>
 
+            </td>
+            <td>{{ cart.product_price  }}</td>
+            <td>{{ cart.sub_total }}</td>
+   <td><a @click="removeItem(cart.id)" class="btn btn-sm btn-primary"><font color="#ffffff">X</font></a></td>
+          </tr>
          
                       
                        
@@ -46,15 +57,27 @@
                 </div>
                 <div class="card-footer">
             <ul class="list-group">
-  
+               <li class="list-group-item d-flex justify-content-between align-items-center">Total Quantity:
+                <strong></strong>
+                </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">Sub Total:
+                <strong>{{ subtotal }} $</strong>
+                </li>
+
+                  <li class="list-group-item d-flex justify-content-between align-items-center">Vat:
+                <strong> %</strong>
+                </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">Total :
+                <strong> $</strong>
+                </li> 
               
             </ul>   
             <br> 
 
         <form @submit.prevent="orderdone">
           <label>Customer Name</label>
-          <select class="form-control" >
-         <option></option>
+          <select class="form-control" v-model="customer_id">
+         <option :value="customer.id" v-for="customer in customers">{{customer.name }} </option>
                  
            </select>
 
@@ -120,7 +143,7 @@
 
      <div class="row">
       <div class="col-lg-3 col-md-3 col-sm-6 col-6" v-for="product in filtersearch" :key="product.id">
-           <button class="btn btn-sm">
+           <button class="btn btn-sm" @click.prevent="AddToCart(product.id)">
              <div class="card" style="width: 8.5rem; margin-bottom: 5px;">
               <img :src="product.image" id="em_photo" class="card-img-top">
               <div class="card-body">
@@ -150,7 +173,7 @@
 
      <div class="row">
       <div class="col-lg-3 col-md-3 col-sm-6 col-6" v-for="getproduct in getfiltersearch" :key="getproduct.id">
-         <button class="btn btn-sm">
+         <button class="btn btn-sm" @click.prevent="AddToCart(getproduct.id)">
              <div class="card" style="width: 8.5rem; margin-bottom: 5px;">
               <img :src="getproduct.image" id="em_photo" class="card-img-top">
               <div class="card-body">
@@ -203,6 +226,11 @@ export default{
         created(){
                 this.allProduct();
                 this.allCategory();
+                this.allCustomer();
+                this.cartProduct();
+                Reload.$on('AfterAdd',() =>{
+                  this.cartProduct();
+                })
                 
 
         },
@@ -213,6 +241,8 @@ export default{
         categories: '',
         getproducts:[],
         getsearchTerm:'',
+        customers:'',
+        carts:[],
         searchTerm:''
         }
         },
@@ -227,8 +257,49 @@ export default{
          return getproduct.product_name.match(this.getsearchTerm)
        }) 
       },
+
+      subtotal(){
+    let sum = 0;
+    for(let i = 0; i < this.carts.length; i++){
+    sum += (parseFloat(this.carts[i].pro_quantity) * parseFloat(this.carts[i].product_price));      
+        }
+       return sum;
+
+      },
+
         },
         methods: {
+           // Cart Methods Here
+              AddToCart(id){
+              axios.get('/api/addToCart/'+id)
+                  .then(() => {
+                    Reload.$emit('AfterAdd');
+                    Toast.fire({
+                      icon: 'success',
+                      title: 'Added successfull'
+                    })
+                  })
+                  .catch()
+              },
+
+              cartProduct(){
+                axios.get('/api/cart/product/')
+                .then(({data}) => (this.carts = data))
+                .catch()
+            },
+
+            removeItem(id){
+            axios.get('/api/remove/cart/'+id)
+                .then(() => {
+                  Reload.$emit('AfterAdd');
+                  Toast.fire({
+                      icon: 'warning',
+                      title: 'remove successfull'
+                    })
+                })
+                .catch()
+            },
+
           allProduct(){
             axios.get('/api/product/')
             .then(({data}) => (this.products = data))
@@ -243,7 +314,28 @@ export default{
               axios.get('/api/getting/product/'+id)
               .then(({data}) => (this.getproducts = data))
               .catch()
-            }
+            },
+          allCustomer(){
+            axios.get('/api/customer/')
+            .then(({data}) => (this.customers = data))
+            .catch(console.log('error'))
+          },
+          increment(id){
+            axios.get('/api/increment/'+id)
+                .then(() => {
+                  Reload.$emit('AfterAdd');
+                  Notification.success()
+                })
+                .catch()
+            },
+            decrement(id){
+              axios.get('/api/decrement/'+id)
+                .then(() => {
+                  Reload.$emit('AfterAdd');
+                  Notification.success()
+                })
+                .catch() 
+            },
              
         }
         

@@ -41,6 +41,8 @@ window.Toast = Toast;
 
 /*---------------- end sweetalert2-------------------------- */
 
+/*------- reload ---------------*/
+window.Reload = new Vue();
 
 
 const router = new VueRouter({

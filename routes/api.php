@@ -29,3 +29,11 @@ Route::Get('/edit/salary/{id}', 'Api\SalaryController@EditSalary');
 Route::Post('/salary/update/{id}', 'Api\SalaryController@SalaryUpdate');
 
 Route::Get('/getting/product/{id}', 'Api\PosController@GetProduct');
+
+// Add to cart Route
+Route::Get('/addToCart/{id}', 'Api\CartController@AddToCart');
+Route::Get('/cart/product', 'Api\CartController@CartProduct');
+Route::Get('/remove/cart/{id}', 'Api\CartController@removeCart');
+
+Route::Get('/increment/{id}', 'Api\CartController@increment');
+Route::Get('/decrement/{id}', 'Api\CartController@decrement');
